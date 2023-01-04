@@ -1,0 +1,71 @@
+<h2 class="contact__title">Entre em Contato</h2>
+<section class="contact__container">
+  <form class="contact-form" [formGroup]="formContato" (ngSubmit)="enviarFormulario()">
+    <input
+      type="text"
+      placeholder="Digite seu nome"
+      formControlName="nome"
+      [class.valid]="formContato.controls['nome'].valid"
+      [class.invalid]="formContato.controls['nome'].invalid && (formContato.controls['nome'].touched || formContato.controls['nome'].dirty)"
+    >
+    <div *ngIf="formContato.controls['nome'].invalid && (formContato.controls['nome'].touched || formContato.controls['nome'].dirty)">
+      <small class="error-message" *ngIf="formContato.controls['nome'].hasError('minlength')">
+        Tamanho mínimo de 4 caracteres.
+      </small>
+      <small class="error-message" *ngIf="formContato.controls['nome'].hasError('required')">
+        Esse campo precisa ser preenchido.
+      </small>
+    </div>
+
+    <input type="text" placeholder="Digite o assunto" formControlName="assunto">
+    <div *ngIf="formContato.controls['assunto'].invalid && (formContato.controls['assunto'].touched || formContato.controls['assunto'].dirty)">
+      <small class="error-message" *ngIf="formContato.controls['assunto'].hasError('minlength')">
+        Tamanho mínimo de 10 caracteres.
+      </small>
+      <small class="error-message" *ngIf="formContato.controls['assunto'].hasError('required')">
+        Esse campo precisa ser preenchido.
+      </small>
+    </div>
+
+    <input type="tel" placeholder="(00) 0 0000-0000" formControlName="telefone" mask="(00) 0 0000-0000">
+    <div *ngIf="formContato.controls['telefone'].invalid && (formContato.controls['telefone'].touched || formContato.controls['telefone'].dirty)">
+      <small class="error-message" *ngIf="formContato.controls['telefone'].hasError('minlength')">
+        Tamanho mínimo de 11 números.
+      </small>
+      <small class="error-message" *ngIf="formContato.controls['telefone'].hasError('required')">
+        Esse campo precisa ser preenchido.
+      </small>
+    </div>
+
+    <input type="email" placeholder="Digite o seu email" formControlName="email">
+    <div *ngIf="formContato.controls['email'].invalid && (formContato.controls['email'].touched || formContato.controls['email'].dirty)">
+      <small class="error-message" *ngIf="formContato.controls['email'].hasError('email')">
+        Formato de email inválido!
+      </small>
+      <small class="error-message" *ngIf="formContato.controls['email'].hasError('required')">
+        Esse campo precisa ser preenchido.
+      </small>
+    </div>
+
+    <textarea
+      maxlength="300"
+      placeholder="Digite sua mensagem"
+      formControlName="mensagem"
+      rows="4"
+    ></textarea>
+    <div *ngIf="formContato.controls['mensagem'].invalid && (formContato.controls['mensagem'].touched || formContato.controls['mensagem'].dirty)">
+      <small class="error-message" *ngIf="formContato.controls['mensagem'].hasError('minlength')">
+        Tamanho mínimo de 20 caracteres.
+      </small>
+      <small class="error-message" *ngIf="formContato.controls['mensagem'].hasError('required')">
+        Esse campo precisa ser preenchido.
+      </small>
+    </div>
+
+    <button [disabled]="formContato.invalid" type="submit">Enviar</button>
+  </form>
+  <address>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1607.6299532184426!2d-49.33321192758427!3d-16.596129411993353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935e8add6040651f%3A0x8581c35301f05d1d!2zMTbCsDM1JzQ3LjQiUyA0OcKwMjAnMDAuNiJX!5e0!3m2!1spt-BR!2sbr!4v1672706733623!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <p>Rua JC-57, Qd. 127 - Jardim Curitiba III - Goiânia - GO</p>
+  </address>
+</section>
